@@ -1,4 +1,4 @@
-# Espresso Network — Node Commands Cheatsheet
+# Espresso Network - Node Commands Cheatsheet
 
 > **By Cumulo** | April 2026  
 > Quick reference for day-to-day node operations.
@@ -138,4 +138,4 @@ curl -s -X POST https://ethereum-sepolia-rpc.publicnode.com \
 
 ---
 
-*Cheatsheet maintained by [Cumulo](https://cumulo.pro) — trusted validator across the blockchain ecosystem.*
+*Cheatsheet maintained by [Cumulo](https://cumulo.pro) - trusted validator across the blockchain ecosystem.*
