@@ -1,6 +1,6 @@
 # cumulo-espresso-infra
 
-> Infrastructure documentation for Cumulo's Espresso Network validator node — hardware setup, DA node installation, configuration, monitoring, and operations runbook.
+> Infrastructure documentation for Cumulo's Espresso Network validator node - hardware setup, DA node installation, configuration, monitoring, and operations runbook.
 
 ---
 
@@ -38,7 +38,7 @@ cumulo-espresso-infra/
 | Disk | 100 GB SSD (DA node with pruning) |
 | OS | Ubuntu 22.04 / 24.04 |
 
-> Running a **DA node with pruning** — the recommended option for validators who also want to serve the Query API.
+> Running a **DA node with pruning** - the recommended option for validators who also want to serve the Query API.
 
 ---
 
@@ -64,8 +64,8 @@ See [`docs/node-commands.md`](docs/node-commands.md) for the full operations che
 
 | Guide | Network | Description |
 |-------|---------|-------------|
-| [Validator Setup — Decaf Testnet](docs/validator-setup.md) | Testnet | Step-by-step: keys, registration, DA node, and stake delegation |
-| Validator Setup — Mainnet | Mainnet | 🚧 Coming soon |
+| [Validator Setup - Decaf Testnet](docs/validator-setup.md) | Testnet | Step-by-step: keys, registration, DA node, and stake delegation |
+| Validator Setup - Mainnet | Mainnet | 🚧 Coming soon |
 | [Node Commands](docs/node-commands.md) | Both | Day-to-day operations: logs, status, updates, database |
 | [Metrics & Monitoring](docs/metrics-setup.md) | Both | Prometheus scraping + Grafana dashboard import |
 
@@ -103,7 +103,7 @@ Metrics are exposed at:
 http://<NODE_IP>:<API_PORT>/v1/status/metrics
 ```
 
-### Healthy Node — Expected Values
+### Healthy Node - Expected Values
 
 | Metric | Healthy Value |
 |--------|--------------|
@@ -130,4 +130,4 @@ See [`docs/metrics-setup.md`](docs/metrics-setup.md) for full Prometheus + Grafa
 
 ---
 
-*Maintained by [Cumulo](https://cumulo.pro) — trusted validator across the blockchain ecosystem.*
+*Maintained by [Cumulo](https://cumulo.pro) - trusted validator across the blockchain ecosystem.*
