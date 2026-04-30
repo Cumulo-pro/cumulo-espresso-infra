@@ -1,0 +1,21 @@
+# Prometheus scrape configuration for Espresso Network nodes
+# Add this block to your prometheus.yml under scrape_configs:
+
+scrape_configs:
+
+  # Espresso Decaf testnet node
+  - job_name: 'espresso-decaf-cumulo'
+    static_configs:
+      - targets: ['<NODE_IP>:<API_PORT>']
+    metrics_path: '/v1/status/metrics'
+    scrape_interval: 15s
+
+  # Uncomment to monitor additional nodes (e.g. Mainnet)
+  # - job_name: 'espresso-mainnet-cumulo'
+  #   static_configs:
+  #     - targets: ['<MAINNET_NODE_IP>:<PORT>']
+  #   metrics_path: '/v1/status/metrics'
+  #   scrape_interval: 15s
+
+# NOTE: The metrics_path field is mandatory.
+# Without it, Prometheus defaults to /metrics which does not exist on Espresso nodes.
