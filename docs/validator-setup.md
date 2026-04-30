@@ -1,4 +1,4 @@
-# Espresso Network — Decaf Testnet Validator Setup Guide
+# Espresso Network - Decaf Testnet Validator Setup Guide
 
 > **By Cumulo** | April 2026
 > A step-by-step guide to register and run a DA node validator on Espresso's **Decaf testnet**.
@@ -40,7 +40,7 @@
 | DA node (pruning) | ✅ | ✅ | 100 GB | ✅ |
 | DA node (archival) | ✅ | ✅ | 1.2 TB+ | ✅ |
 
-This guide covers setting up a **DA node with pruning** — the recommended option for validators who also want to serve the Query API.
+This guide covers setting up a **DA node with pruning** - the recommended option for validators who also want to serve the Query API.
 
 > **Note on access:** Decaf is a semi-permissioned testnet. The Espresso team manually delegates testnet stake to new operators. You can register on-chain without prior permission, but you will need stake delegated by the team to join the active consensus set.
 
@@ -51,7 +51,7 @@ This guide covers setting up a **DA node with pruning** — the recommended opti
 - A Linux server (Ubuntu 22.04 or 24.04 recommended)
 - Docker installed
 - A dedicated Ethereum wallet with Sepolia ETH for gas (do not reuse your main wallet)
-- Access to a Sepolia L1 RPC endpoint (PublicNode recommended — free, no rate limits)
+- Access to a Sepolia L1 RPC endpoint (PublicNode recommended - free, no rate limits)
 - Port **1769/tcp** open for libp2p P2P
 - An available port for the Query API (default 8080, use an alternative if already occupied)
 
@@ -106,7 +106,7 @@ Verify installation:
 docker --version && docker compose version
 ```
 
-> **Troubleshooting — iptables error on older kernels:**
+> **Troubleshooting - iptables error on older kernels:**
 > If Docker fails to start with iptables/nftables errors, switch to legacy mode:
 > ```bash
 > sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
@@ -126,7 +126,7 @@ mkdir -p ~/espresso-decaf/keys
 mkdir -p ~/espresso-decaf/data/postgres
 ```
 
-Generate the three required keys — Ethereum wallet mnemonic, BLS consensus key, and Schnorr state key:
+Generate the three required keys - Ethereum wallet mnemonic, BLS consensus key, and Schnorr state key:
 
 ```bash
 docker run --rm \
@@ -173,7 +173,7 @@ print('Address:', acct.address)
 "
 ```
 
-Save this address — this is your **validator wallet address** on Sepolia.
+Save this address - this is your **validator wallet address** on Sepolia.
 
 ---
 
@@ -331,7 +331,7 @@ Replace all placeholders before starting:
 
 > **Port note:** The example maps the Query API to port `18080` to avoid conflicts with other services. Change `18080:80` to `8080:80` if port 8080 is free on your server.
 
-> **L1 Provider note:** Avoid Alchemy's free tier — it limits `eth_getLogs` to 10-block ranges, which is insufficient for Espresso. Use PublicNode (free, no limits) or an Alchemy PAYG plan.
+> **L1 Provider note:** Avoid Alchemy's free tier - it limits `eth_getLogs` to 10-block ranges, which is insufficient for Espresso. Use PublicNode (free, no limits) or an Alchemy PAYG plan.
 
 ---
 
@@ -371,9 +371,9 @@ docker compose logs -f sequencer
 
 | Warning | Meaning |
 |---------|---------|
-| `Stake table for Epoch XXXX Unavailable` | Expected — no stake delegated yet |
-| `NoPeersYet` | Transient — disappears once connected to network |
-| `view timed out` | Expected — not yet in consensus set |
+| `Stake table for Epoch XXXX Unavailable` | Expected - no stake delegated yet |
+| `NoPeersYet` | Transient - disappears once connected to network |
+| `view timed out` | Expected - not yet in consensus set |
 | `Catch up already in Progress` | Normal during initial sync |
 
 View your validator on the Decaf block explorer:
@@ -466,4 +466,4 @@ docker compose pull && docker compose up -d
 
 ---
 
-*Guide maintained by [Cumulo](https://cumulo.pro) — trusted validator across the blockchain ecosystem.*
+*Guide maintained by [Cumulo](https://cumulo.pro) - trusted validator across the blockchain ecosystem.*
