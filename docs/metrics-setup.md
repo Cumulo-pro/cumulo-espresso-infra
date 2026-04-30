@@ -1,4 +1,4 @@
-# Espresso Network — Metrics & Monitoring Setup
+# Espresso Network - Metrics & Monitoring Setup
 
 > **By Cumulo** | April 2026  
 > How to expose and collect Espresso Decaf validator metrics with Prometheus and visualize them in Grafana.
@@ -7,7 +7,7 @@
 
 ## Overview
 
-Espresso's sequencer node exposes a Prometheus-compatible metrics endpoint out of the box when running with the `-- status` module. No additional configuration is required on the node side — metrics are available at:
+Espresso's sequencer node exposes a Prometheus-compatible metrics endpoint out of the box when running with the `-- status` module. No additional configuration is required on the node side - metrics are available at:
 
 ```
 http://<NODE_IP>:<API_PORT>/v1/status/metrics
@@ -26,7 +26,7 @@ This guide covers how to connect an external Prometheus instance to scrape those
 
 ---
 
-## Step 1 — Verify the Metrics Endpoint
+## Step 1 - Verify the Metrics Endpoint
 
 From any machine with network access to the node, verify the endpoint is responding:
 
@@ -49,7 +49,7 @@ aggregator_height 1
 
 ---
 
-## Step 2 — Add the Scrape Job to Prometheus
+## Step 2 - Add the Scrape Job to Prometheus
 
 Edit your `prometheus.yml` and add the following scrape job:
 
@@ -89,7 +89,7 @@ Each job will appear as a separate selectable option in the Grafana dashboard.
 
 ---
 
-## Step 3 — Reload Prometheus
+## Step 3 - Reload Prometheus
 
 Apply the configuration without downtime:
 
@@ -105,7 +105,7 @@ sudo systemctl restart prometheus
 
 ---
 
-## Step 4 — Verify the Target is Active
+## Step 4 - Verify the Target is Active
 
 Check that Prometheus is successfully scraping the node:
 
@@ -126,7 +126,7 @@ If `lastError` is not empty, check network connectivity and that the `metrics_pa
 
 ---
 
-## Step 5 — Import the Grafana Dashboard
+## Step 5 - Import the Grafana Dashboard
 
 1. In Grafana, go to **Dashboards → Import**
 2. Upload the file `espresso-grafana-dashboard.json` or paste its contents
@@ -168,7 +168,7 @@ sudo ufw allow from 127.0.0.1 to any port <API_PORT>
 
 ---
 
-## Healthy Node — Expected Metric Values
+## Healthy Node - Expected Metric Values
 
 Once the node has stake delegated and is participating in consensus, these are the expected ranges for a healthy validator:
 
@@ -184,4 +184,4 @@ Once the node has stake delegated and is participating in consensus, these are t
 
 ---
 
-*Guide maintained by [Cumulo](https://cumulo.pro) — trusted validator across the blockchain ecosystem.*
+*Guide maintained by [Cumulo](https://cumulo.pro) - trusted validator across the blockchain ecosystem.*
