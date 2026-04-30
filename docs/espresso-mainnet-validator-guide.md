@@ -1,4 +1,4 @@
-# Espresso Network — Mainnet 1 Validator Setup Guide
+# Espresso Network - Mainnet 1 Validator Setup Guide
 
 > **By Cumulo** | April 2026  
 > A step-by-step guide to register and run a DA node validator on Espresso Mainnet 1.
@@ -30,7 +30,7 @@
 
 **Espresso Network Mainnet 1** operates a permissionless Proof-of-Stake consensus using the HotShot protocol. The active validator set consists of the **top 100 nodes by delegated ESP stake**, updated dynamically each epoch (~24 hours).
 
-Unlike Decaf testnet, Mainnet requires **real ESP tokens** for delegation — either self-delegated or from external delegators. There is no team-managed delegation for Mainnet.
+Unlike Decaf testnet, Mainnet requires **real ESP tokens** for delegation - either self-delegated or from external delegators. There is no team-managed delegation for Mainnet.
 
 ### Key Differences from Decaf Testnet
 
@@ -65,7 +65,7 @@ Espresso requires `eth_getLogs` with wide block ranges. Recommended providers:
 | **Alchemy PAYG** | ~cents/month | Most reliable |
 | **Infura** | Free tier | May have range limits |
 
-> ⚠️ Avoid Alchemy's free tier — it limits `eth_getLogs` to 10-block ranges which is insufficient for Espresso.
+> ⚠️ Avoid Alchemy's free tier - it limits `eth_getLogs` to 10-block ranges which is insufficient for Espresso.
 
 ---
 
@@ -135,7 +135,7 @@ mkdir -p ~/espresso-mainnet/keys
 mkdir -p ~/espresso-mainnet/data/postgres
 ```
 
-Generate validator keys — BLS consensus key and Schnorr state key:
+Generate validator keys - BLS consensus key and Schnorr state key:
 
 ```bash
 docker run --rm \
@@ -354,7 +354,7 @@ Replace all placeholders before starting:
 | `<YOUR_ETHEREUM_MAINNET_HTTP_RPC>` | e.g. `https://eth.llamarpc.com` |
 | `<YOUR_ETHEREUM_MAINNET_WSS_RPC>` | e.g. `wss://eth.llamarpc.com` |
 
-> **Important:** Mainnet DA nodes require `ESPRESSO_SEQUENCER_IS_DA: "true"` — this is not needed in Decaf.
+> **Important:** Mainnet DA nodes require `ESPRESSO_SEQUENCER_IS_DA: "true"` - this is not needed in Decaf.
 
 > **API peers:** Note that Mainnet uses `/v1` suffix in state and API peers URLs, unlike Decaf.
 
@@ -384,7 +384,7 @@ ESP is an ERC-20 token on **Ethereum Mainnet**:
 
 Send ESP to your validator wallet address, then:
 
-**Step 1 — Approve the stake table contract to spend your ESP:**
+**Step 1 - Approve the stake table contract to spend your ESP:**
 
 ```bash
 docker run --rm \
@@ -398,7 +398,7 @@ docker run --rm \
   --amount <AMOUNT>
 ```
 
-**Step 2 — Delegate to your validator:**
+**Step 2 - Delegate to your validator:**
 
 ```bash
 docker run --rm \
@@ -436,9 +436,9 @@ curl -s http://localhost:18080/v1/status/metrics | grep -E "^aggregator_height|^
 View your validator on the Mainnet explorer:
 https://explorer.main.net.espresso.network
 
-> **Expected behavior before entering active set:** Block height stays at 1, no peers connected. This is normal — the node joins consensus at the next epoch after delegation.
+> **Expected behavior before entering active set:** Block height stays at 1, no peers connected. This is normal - the node joins consensus at the next epoch after delegation.
 
-> **Expected warning after registration (normal):** `LCV3 signature posted by nodes not on the stake table` — this disappears once the new stake table takes effect at the next epoch.
+> **Expected warning after registration (normal):** `LCV3 signature posted by nodes not on the stake table` - this disappears once the new stake table takes effect at the next epoch.
 
 ---
 
@@ -534,4 +534,4 @@ docker run --rm \
 
 ---
 
-*Guide maintained by [Cumulo](https://cumulo.pro) — trusted validator across the blockchain ecosystem.*
+*Guide maintained by [Cumulo](https://cumulo.pro) - trusted validator across the blockchain ecosystem.*
