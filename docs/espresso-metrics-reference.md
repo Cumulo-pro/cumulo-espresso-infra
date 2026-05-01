@@ -1,4 +1,4 @@
-# Espresso Network — Metrics Reference
+# Espresso Network - Metrics Reference
 
 > **By Cumulo** | April 2026  
 > Complete reference of available Prometheus metrics exposed by the Espresso sequencer node, with descriptions oriented to node operators.
@@ -8,10 +8,10 @@
 ## How to Read This Reference
 
 Each metric entry includes:
-- **Metric name** — the Prometheus metric identifier
-- **Type** — Gauge, Counter, or Histogram
-- **PromQL function** — the recommended function to use in queries
-- **Operator description** — what this metric means in practice and when to act on it
+- **Metric name** - the Prometheus metric identifier
+- **Type** - Gauge, Counter, or Histogram
+- **PromQL function** - the recommended function to use in queries
+- **Operator description** - what this metric means in practice and when to act on it
 
 ---
 
@@ -22,7 +22,7 @@ Each metric entry includes:
 ### `up`
 **Type:** Gauge  
 **PromQL:** `up{job="espresso-decaf-cumulo"}`  
-**Description:** Standard Prometheus scrape health indicator. Returns `1` if Prometheus can reach the node's metrics endpoint, `0` if the node is unreachable or the metrics endpoint is down. This is the most fundamental health check — if this is `0`, no other metrics will update. Alert immediately if this drops to `0`.
+**Description:** Standard Prometheus scrape health indicator. Returns `1` if Prometheus can reach the node's metrics endpoint, `0` if the node is unreachable or the metrics endpoint is down. This is the most fundamental health check - if this is `0`, no other metrics will update. Alert immediately if this drops to `0`.
 
 ---
 
@@ -43,7 +43,7 @@ Each metric entry includes:
 ### `aggregator_height`
 **Type:** Gauge  
 **PromQL:** `aggregator_height{job=~"$node"}`  
-**Description:** The current block height as seen by the node's aggregator. This is the primary sync indicator — it should increase continuously as new blocks are decided. A value stuck at `1` means the node is not yet participating in consensus (usually because stake has not been delegated). A value that stops increasing on an active validator signals a sync problem.
+**Description:** The current block height as seen by the node's aggregator. This is the primary sync indicator - it should increase continuously as new blocks are decided. A value stuck at `1` means the node is not yet participating in consensus (usually because stake has not been delegated). A value that stops increasing on an active validator signals a sync problem.
 
 ---
 
@@ -61,21 +61,21 @@ Each metric entry includes:
 ### `consensus_current_view`
 **Type:** Gauge  
 **PromQL:** `consensus_current_view{job=~"$node"}`  
-**Description:** The current HotShot view number the node is processing. Views are the internal time unit of the HotShot consensus protocol — each view corresponds to one block proposal opportunity. This value should increase continuously and closely track `consensus_last_decided_view`. A large gap between current view and last decided view indicates the network is struggling to reach consensus.
+**Description:** The current HotShot view number the node is processing. Views are the internal time unit of the HotShot consensus protocol - each view corresponds to one block proposal opportunity. This value should increase continuously and closely track `consensus_last_decided_view`. A large gap between current view and last decided view indicates the network is struggling to reach consensus.
 
 ---
 
 ### `consensus_last_decided_view`
 **Type:** Gauge  
 **PromQL:** `consensus_last_decided_view{job=~"$node"}`  
-**Description:** The view number of the most recently finalized (decided) block. Compare this against `consensus_current_view` — under normal conditions the gap should be small (1-3 views). A growing gap signals consensus is stalling and blocks are not being finalized at the expected rate.
+**Description:** The view number of the most recently finalized (decided) block. Compare this against `consensus_current_view` - under normal conditions the gap should be small (1-3 views). A growing gap signals consensus is stalling and blocks are not being finalized at the expected rate.
 
 ---
 
 ### `consensus_last_voted_view`
 **Type:** Gauge  
 **PromQL:** `consensus_last_voted_view{job=~"$node"}`  
-**Description:** The last view in which this node cast a vote. If this value is not advancing while `consensus_current_view` is increasing, the node is receiving proposals but not voting — which means it is not actively participating in consensus. This can happen when the node is not in the active stake table.
+**Description:** The last view in which this node cast a vote. If this value is not advancing while `consensus_current_view` is increasing, the node is receiving proposals but not voting - which means it is not actively participating in consensus. This can happen when the node is not in the active stake table.
 
 ---
 
@@ -96,7 +96,7 @@ Each metric entry includes:
 ### `consensus_number_of_timeouts_as_leader`
 **Type:** Counter  
 **PromQL:** `increase(consensus_number_of_timeouts_as_leader{job=~"$node"}[5m])`  
-**Description:** Number of times this specific node was the designated leader for a view and that view timed out. High values here mean this node is being elected leader but failing to get its proposals decided — check network connectivity, peer count, and L1 provider health.
+**Description:** Number of times this specific node was the designated leader for a view and that view timed out. High values here mean this node is being elected leader but failing to get its proposals decided - check network connectivity, peer count, and L1 provider health.
 
 ---
 
@@ -166,7 +166,7 @@ Each metric entry includes:
 ### `consensus_finalized_bytes`
 **Type:** Counter  
 **PromQL:** `increase(consensus_finalized_bytes{job=~"$node"}[1h])`  
-**Description:** Total bytes of transaction data finalized by this node. A throughput indicator — useful to measure how much data the node is processing over time and to compare activity across epochs.
+**Description:** Total bytes of transaction data finalized by this node. A throughput indicator - useful to measure how much data the node is processing over time and to compare activity across epochs.
 
 ---
 
@@ -205,28 +205,28 @@ Each metric entry includes:
 ### `consensus_cliquenet_sequencer_connections`
 **Type:** Gauge  
 **PromQL:** `consensus_cliquenet_sequencer_connections{job=~"$node"}`  
-**Description:** Number of active connections in the CliqueNet overlay (the structured P2P topology used by HotShot). Complements `libp2p_num_connected_peers` — low values here alongside low libp2p peers confirms the node is poorly connected to the validator set.
+**Description:** Number of active connections in the CliqueNet overlay (the structured P2P topology used by HotShot). Complements `libp2p_num_connected_peers` - low values here alongside low libp2p peers confirms the node is poorly connected to the validator set.
 
 ---
 
 ### `consensus_cliquenet_sequencer_iqueue_cap`
 **Type:** Gauge  
 **PromQL:** `consensus_cliquenet_sequencer_iqueue_cap{job=~"$node"}`  
-**Description:** Capacity of the inbound message queue. If this approaches its limit, the node is receiving more messages than it can process — a sign of being overwhelmed by network traffic or a slow processing pipeline.
+**Description:** Capacity of the inbound message queue. If this approaches its limit, the node is receiving more messages than it can process - a sign of being overwhelmed by network traffic or a slow processing pipeline.
 
 ---
 
 ### `consensus_cliquenet_sequencer_oqueue_cap`
 **Type:** Gauge  
 **PromQL:** `consensus_cliquenet_sequencer_oqueue_cap{job=~"$node"}`  
-**Description:** Capacity of the outbound message queue. A saturated outbound queue means the node is trying to send more messages than the network can absorb — check for high timeout rates and peer connectivity issues.
+**Description:** Capacity of the outbound message queue. A saturated outbound queue means the node is trying to send more messages than the network can absorb - check for high timeout rates and peer connectivity issues.
 
 ---
 
 ### `consensus_internal_event_queue_len`
 **Type:** Gauge  
 **PromQL:** `consensus_internal_event_queue_len{job=~"$node"}`  
-**Description:** Length of the internal HotShot event processing queue. Under normal operation this should be low and stable. A growing queue indicates the node's consensus processing is falling behind the rate of incoming events — usually caused by CPU saturation or slow storage.
+**Description:** Length of the internal HotShot event processing queue. Under normal operation this should be low and stable. A growing queue indicates the node's consensus processing is falling behind the rate of incoming events - usually caused by CPU saturation or slow storage.
 
 ---
 
@@ -237,7 +237,7 @@ Each metric entry includes:
 ### `consensus_l1_head`
 **Type:** Gauge  
 **PromQL:** `consensus_l1_head{job=~"$node"}`  
-**Description:** The latest L1 (Sepolia) block number seen by the node. Should advance continuously as new Sepolia blocks are produced. A stale value means the node has lost connection to its L1 RPC provider — which will prevent stake table updates and may cause consensus issues.
+**Description:** The latest L1 (Sepolia) block number seen by the node. Should advance continuously as new Sepolia blocks are produced. A stale value means the node has lost connection to its L1 RPC provider - which will prevent stake table updates and may cause consensus issues.
 
 ---
 
@@ -251,7 +251,7 @@ Each metric entry includes:
 ### `consensus_l1_failed_requests`
 **Type:** Counter  
 **PromQL:** `increase(consensus_l1_failed_requests{job=~"$node"}[5m])`  
-**Description:** Number of failed RPC requests to the L1 provider. Intermittent failures are expected but should be rare. A sustained high rate means the L1 provider is unreliable — consider switching to a different RPC endpoint. This is particularly critical for stake table reads, which require broad `eth_getLogs` queries.
+**Description:** Number of failed RPC requests to the L1 provider. Intermittent failures are expected but should be rare. A sustained high rate means the L1 provider is unreliable - consider switching to a different RPC endpoint. This is particularly critical for stake table reads, which require broad `eth_getLogs` queries.
 
 ---
 
@@ -265,7 +265,7 @@ Each metric entry includes:
 ### `consensus_l1_stream_reconnects`
 **Type:** Counter  
 **PromQL:** `increase(consensus_l1_stream_reconnects{job=~"$node"}[1h])`  
-**Description:** Number of WebSocket reconnections to the L1 provider. WebSocket connections to RPC providers drop periodically — some reconnects are normal. A very high reconnect rate indicates an unstable WSS provider and may cause missed L1 events.
+**Description:** Number of WebSocket reconnections to the L1 provider. WebSocket connections to RPC providers drop periodically - some reconnects are normal. A very high reconnect rate indicates an unstable WSS provider and may cause missed L1 events.
 
 ---
 
@@ -297,7 +297,7 @@ Each metric entry includes:
 ### `scanner_missing_blocks`
 **Type:** Gauge  
 **PromQL:** `scanner_missing_blocks{job=~"$node"}`  
-**Description:** Number of blocks for which the node has not been able to retrieve or verify DA data. This should be `0` on a healthy DA node. Any non-zero value means the node has gaps in its data availability — investigate whether the node is missing data from peers or whether pruning is too aggressive.
+**Description:** Number of blocks for which the node has not been able to retrieve or verify DA data. This should be `0` on a healthy DA node. Any non-zero value means the node has gaps in its data availability - investigate whether the node is missing data from peers or whether pruning is too aggressive.
 
 ---
 
@@ -322,7 +322,7 @@ Each metric entry includes:
 ### `sql_open_transactions`
 **Type:** Gauge  
 **PromQL:** `sql_open_transactions{job=~"$node"}`  
-**Description:** Number of PostgreSQL transactions currently open. Should be low and stable under normal operation. A sustained high value indicates the node is opening more transactions than it is closing — possibly due to slow queries or database contention.
+**Description:** Number of PostgreSQL transactions currently open. Should be low and stable under normal operation. A sustained high value indicates the node is opening more transactions than it is closing - possibly due to slow queries or database contention.
 
 ---
 
@@ -336,7 +336,7 @@ Each metric entry includes:
 ### `sql_reverted_transactions`
 **Type:** Counter  
 **PromQL:** `increase(sql_reverted_transactions{job=~"$node"}[5m])`  
-**Description:** Number of database transactions that were rolled back. Occasional reversions are normal. A high reversion rate indicates database errors or conflicts — check PostgreSQL logs for constraint violations or deadlocks.
+**Description:** Number of database transactions that were rolled back. Occasional reversions are normal. A high reversion rate indicates database errors or conflicts - check PostgreSQL logs for constraint violations or deadlocks.
 
 ---
 
@@ -350,7 +350,7 @@ Each metric entry includes:
 ### `sql_transaction_duration`
 **Type:** Histogram  
 **PromQL:** `histogram_quantile(0.95, rate(sql_transaction_duration_bucket{job=~"$node"}[5m]))`  
-**Description:** Distribution of database transaction durations in seconds. The p95 latency is the most useful view — high p95 values indicate slow database operations that may be impacting node performance. Values above 1 second warrant investigation of PostgreSQL performance.
+**Description:** Distribution of database transaction durations in seconds. The p95 latency is the most useful view - high p95 values indicate slow database operations that may be impacting node performance. Values above 1 second warrant investigation of PostgreSQL performance.
 
 ---
 
@@ -407,7 +407,7 @@ Each metric entry includes:
 ### `consensus_catchup_request_failures`
 **Type:** Counter  
 **PromQL:** `increase(consensus_catchup_request_failures{job=~"$node"}[5m])`  
-**Description:** Number of catchup requests that failed. A high failure rate during sync indicates that peers are not responding to catchup requests — check peer connectivity and whether the peers themselves are healthy.
+**Description:** Number of catchup requests that failed. A high failure rate during sync indicates that peers are not responding to catchup requests - check peer connectivity and whether the peers themselves are healthy.
 
 ---
 
@@ -432,7 +432,7 @@ Each metric entry includes:
 ### `sync_status_avg_time_per_block_scanned`
 **Type:** Gauge  
 **PromQL:** `sync_status_avg_time_per_block_scanned{job=~"$node"}`  
-**Description:** Average time in milliseconds to scan one block for missing data. A useful indicator of sync performance — high values indicate the scanner is slow, possibly due to database or network bottlenecks.
+**Description:** Average time in milliseconds to scan one block for missing data. A useful indicator of sync performance - high values indicate the scanner is slow, possibly due to database or network bottlenecks.
 
 ---
 
@@ -443,4 +443,4 @@ Each metric entry includes:
 
 ---
 
-*Reference maintained by [Cumulo](https://cumulo.pro) — trusted validator across the blockchain ecosystem.*
+*Reference maintained by [Cumulo](https://cumulo.pro) - trusted validator across the blockchain ecosystem.*
