@@ -65,7 +65,7 @@ See [`docs/node-commands.md`](docs/node-commands.md) for the full operations che
 | Guide | Network | Description |
 |-------|---------|-------------|
 | [Validator Setup - Decaf Testnet](docs/validator-setup.md) | Testnet | Step-by-step: keys, registration, DA node, and stake delegation |
-| Validator Setup - Mainnet | Mainnet | 🚧 Coming soon |
+| [Validator Setup - Mainnet](https://github.com/Cumulo-pro/cumulo-espresso-infra/blob/main/docs/espresso-mainnet-validator-guide.md) | Mainnet | Step-by-step: keys, registration, DA node, and stake delegation |
 | [Node Commands](docs/node-commands.md) | Both | Day-to-day operations: logs, status, updates, database |
 | [Metrics & Monitoring](docs/metrics-setup.md) | Both | Prometheus scraping + Grafana dashboard import |
 
